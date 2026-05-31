@@ -1,0 +1,62 @@
+{
+  "name": "domain-autocorrect",
+  "version": "0.0.1",
+  "private": true,
+  "description": "High-performance tech domain autocorrect library powered by Rust and WASM",
+  "workspaces": [
+    "docs",
+    "web_packages/*"
+  ],
+  "type": "module",
+  "main": "web_packages/wasm/dist/index.cjs",
+  "module": "web_packages/wasm/dist/index.mjs",
+  "types": "web_packages/wasm/dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./web_packages/wasm/dist/index.mjs",
+      "require": "./web_packages/wasm/dist/index.cjs",
+      "types": "./web_packages/wasm/dist/index.d.ts"
+    },
+    "./react": {
+      "import": "./web_packages/react/dist/index.mjs",
+      "require": "./web_packages/react/dist/index.cjs",
+      "types": "./web_packages/react/dist/index.d.ts"
+    },
+    "./solid": {
+      "import": "./web_packages/solid/dist/index.mjs",
+      "require": "./web_packages/solid/dist/index.cjs",
+      "types": "./web_packages/solid/dist/index.d.ts"
+    }
+  },
+  "files": [
+    "web_packages/wasm/dist/",
+    "web_packages/react/dist/",
+    "web_packages/solid/dist/"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "build:wasm": "mkdir -p web_packages/wasm/dist && cp \"${DICT_PATH:-assets/tech.txt}\" engine/tech.txt && cargo build --release --target wasm32-unknown-unknown && cp engine/dist/wasm32-unknown-unknown/release/autocorrect.wasm web_packages/wasm/dist/autocorrect.wasm",
+    "build:all": "bun run build && bun run build:wasm"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^18",
+    "react": "^18",
+    "rolldown-plugin-wasm": "^0.2.1",
+    "solid-js": "^1.9.12",
+    "tsdown": "^0.22.1",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "solid-js": ">=1"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "solid-js": {
+      "optional": true
+    }
+  }
+}

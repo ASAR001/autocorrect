@@ -1,0 +1,23 @@
+{
+  "name": "domain-autocorrect-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "domain-autocorrect": "file:.."
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@tanstack/solid-router": "^1.170.6",
+    "rolldown-plugin-wasm": "^0.2.1",
+    "solid-js": "^1.9.12",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "vite-plugin-solid": "^2.11.12"
+  }
+}
